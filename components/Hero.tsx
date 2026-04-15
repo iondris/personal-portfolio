@@ -25,7 +25,7 @@ export default function Hero() {
 
         <div className="flex gap-4 mt-8">
           <button className="px-6 py-3 rounded-xl bg-white/10 border border-white/10 backdrop-blur-md hover:bg-white/20 transition">
-            My Projects
+            {t.heroButton1}
           </button>
 
           <button className="px-6 py-3 rounded-xl border border-white/20 hover:bg-white/10 transition">

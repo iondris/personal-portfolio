@@ -2,6 +2,7 @@ export const translations = {
   tr: {
     heroTitle: "Yunus Emre Demirel",
     heroDesc: "Modern ve kullanıcı odaklı web uygulamaları geliştiriyorum.",
+    heroButton1: "Projelerim",
 
     projectsTitle: "Projelerim",
 
@@ -68,7 +69,7 @@ export const translations = {
   en: {
     heroTitle: "Yunus Emre Demirel",
     heroDesc: "I build modern and user-focused web applications.",
-
+    heroButton1: "My Projects",
     projectsTitle: "Projects",
 
     projects: [
