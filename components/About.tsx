@@ -8,7 +8,7 @@ export default function About() {
   const t = translations[lang];
 
   return (
-    <section className="max-w-4xl mx-auto mt-32">
+    <section id="about" className="max-w-4xl mx-auto mt-32">
       
       <div className="rounded-2xl p-[1px] bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500">
         

@@ -16,7 +16,7 @@ export default function Projects() {
   };
 
   return (
-    <section className="max-w-5xl mx-auto mt-20">
+    <section id="projects" className="max-w-5xl mx-auto mt-20">
       
       <h2 className="text-3xl font-semibold text-center mb-12">
         {t.projectsTitle}

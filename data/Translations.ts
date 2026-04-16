@@ -21,7 +21,7 @@ export const translations = {
       },
     ],
 
-    skillsTitle: "Yetkinliklerim",
+    skillsTitle: "Yeteneklerim",
 
     techSkillsTitle: "💻 Teknik Yetenekler",
     softSkillsTitle: "🧠 Kişisel Yetenekler",

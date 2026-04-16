@@ -16,7 +16,7 @@ export default function Skills() {
   };
 
   return (
-    <section className="max-w-6xl mx-auto mt-32">
+    <section id="skills" className="max-w-6xl mx-auto mt-32">
       
       <h2 className="text-3xl font-semibold text-center mb-12">
         {t.skillsTitle}

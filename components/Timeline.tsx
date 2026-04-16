@@ -9,7 +9,7 @@ export default function Timeline() {
   const t = translations[lang];
 
   return (
-    <section className="max-w-4xl mx-auto mt-32">
+    <section id="journey" className="max-w-4xl mx-auto mt-32">
       
       <h2 className="text-3xl font-semibold text-center mb-12">
         {t.journeyTitle}
