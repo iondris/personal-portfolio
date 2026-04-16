@@ -28,9 +28,14 @@ export default function Hero() {
             {t.heroButton1}
           </button>
 
-          <button className="px-6 py-3 rounded-xl border border-white/20 hover:bg-white/10 transition">
+          <a
+            href="https://github.com/iondris"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3 rounded-lg bg-white/10 hover:bg-white/20 transition border border-white/10"
+          >
             GitHub
-          </button>
+          </a>
         </div>
       </div>
 
