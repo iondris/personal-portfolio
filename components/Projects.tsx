@@ -1,89 +1,80 @@
 "use client";
 
 import { useState } from "react";
-import { useLanguage } from "@/context/LanguageContext";
+import { projects } from "@/data/projects";
 import { translations } from "@/data/Translations";
+import { useLanguage } from "@/context/LanguageContext";
+import { FaGithub } from "react-icons/fa";
 
 export default function Projects() {
-  const [active, setActive] = useState<string | null>(null);
-
-  // ✅ HOOK SADECE COMPONENT İÇİNDE
   const { lang } = useLanguage();
-  const t = translations[lang];
+  const t = translations[lang as "tr" | "en"];
 
-  const toggle = (id: string) => {
-    setActive(active === id ? null : id);
-  };
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="projects" className="max-w-5xl mx-auto mt-20">
-      
-      <h2 className="text-3xl font-semibold text-center mb-12">
-        {t.projectsTitle}
+    <section id="projects" className="max-w-5xl mx-auto mt-32 px-4">
+      <h2 className="text-3xl font-bold text-center mb-12">
+        {t.projects.title}
       </h2>
 
-      <div className="space-y-10">
-        {t.projects.map((project, index) => {
-          const id = index.toString();
-          const isOpen = active === id;
+      <div className="space-y-6">
+        {projects.map((project, index) => {
+          const content = t.projects[project.id as keyof typeof t.projects];
+          const isOpen = openIndex === index;
+
+          if (typeof content === "string") return null;
 
           return (
             <div
-              key={id}
-              className={`relative rounded-2xl p-[1px] transition-all duration-500 hover:scale-[1.02] ${
-                isOpen
-                  ? "bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500"
-                  : "bg-white/10 hover:bg-gradient-to-r hover:from-purple-500/50 hover:via-pink-500/50 hover:to-blue-500/50"
-              }`}
+              key={project.id}
+              onClick={() => setOpenIndex(isOpen ? null : index)}
+              className="cursor-pointer rounded-2xl border border-white/10 p-6 bg-white/5 hover:bg-white/10 transition"
             >
-              {/* HOVER GLOW */}
-              <div className="absolute inset-0 rounded-2xl opacity-0 hover:opacity-100 transition duration-500 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 blur-2xl -z-10"></div>
+              <h3 className="text-xl font-semibold">
+                {content.title}
+              </h3>
 
-              {/* CARD */}
-              <div className="rounded-2xl p-6 backdrop-blur-xl bg-black/70 border border-white/10 transition duration-300 hover:border-white/20">
-                
-                {/* HEADER */}
-                <div className="flex justify-between items-center">
-                  <div>
-                    <h3 className="text-2xl font-semibold bg-gradient-to-r from-purple-400 to-blue-400 text-transparent bg-clip-text">
-                      {project.title}
-                    </h3>
-                    <p className="text-gray-400 text-sm">
-                      {project.short}
-                    </p>
-                  </div>
+              <p className="text-gray-400 mt-2">
+                {content.description}
+              </p>
 
-                  <button
-                    onClick={() => toggle(id)}
-                    className="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition border border-white/10"
+              {/* TECH */}
+              <div className="flex flex-wrap gap-2 mt-4">
+                {project.tech.map((tech, i) => (
+                  <span
+                    key={i}
+                    className="px-3 py-1 text-xs rounded-full bg-white/10 border border-white/10"
                   >
-                    {isOpen
-                      ? lang === "tr"
-                        ? "Kapat"
-                        : "Close"
-                      : lang === "tr"
-                        ? "Detay"
-                        : "Detail"}
-                  </button>
-                </div>
-
-                {/* EXPAND */}
-                <div
-                  className={`overflow-hidden transition-all duration-500 ${
-                    isOpen ? "max-h-96 mt-6" : "max-h-0"
-                  }`}
-                >
-                  <p className="text-gray-300 mb-4 leading-relaxed">
-                    {project.details}
-                  </p>
-                </div>
-
+                    {tech}
+                  </span>
+                ))}
               </div>
+
+              {/* DETAILS */}
+              {isOpen && (
+                <div className="mt-4">
+                  <p className="text-gray-300">
+                    {content.details}
+                  </p>
+
+                  <div className="mt-4">
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      onClick={(e) => e.stopPropagation()}
+                      className="flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20"
+                    >
+                      <FaGithub />
+                      GitHub
+                    </a>
+                  </div>
+                </div>
+              )}
             </div>
           );
         })}
       </div>
-
     </section>
   );
 }
